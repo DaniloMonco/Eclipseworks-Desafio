@@ -1,4 +1,5 @@
 
+
 # Eclipseworks - Desafio Técnico
 
 ## Overview
@@ -48,4 +49,21 @@ Para acessar a API, utilizar o endereço: https://localhost:8081/swagger/index.h
 
 Como não foi solicitado um sistema de autentação/autorização no desafio, criei uma tabela chamada "UserRole" com dois usuários. Position: 1 seria o gerente, foi uma alternativa mais simples possível para satisfazer uma regra de negocio do teste e também para não ficar preocupado com autenticacão, conforme solicitado.
 
+Do mais, espero ter atingindo o desafio técnico, sei que não fiz testes unitários para todos os projetos, mas desenvolvi para a principal parte do código e gostaria de participar de uma conversa técnica para discutir todas as decisões técnicas abordadas, tradeoffs etc - algo que não é possível realizar no README.
+
 Grato pela oportunidade.
+
+## Fase 2: Refinamento
+Minhas perguntas para o PO, seriam:
+
+ 1. Como seria a integração com o sistema de autorização/autenticação. Pois é muito importante para esse MVC ter uma versão com essa feature;
+ 2. Nos requisitos anteriores não foi citado uma opção para alterar o projeto na API e por esse motivo não foi implementado. Seria interessante priorizar essa ultima feature do "CRUD"
+ 3. Um outro recurso bacana seria a possibilidade de inserir várias tarefas de uma só fez para o projeto
+ 4. Para o microsserviço de auditória, poderia-se criar uma api para recuperar os dados dessa auditoria. 
+
+## Fase 3: Final
+Devido ao feriado de pascoa não consegui realizar testes unitários em todos os projetos e isso é algo que melhoraria com certeza numa próxima fase do projeto. Os testes foram desenvolvidos na cama de Domain e Application, que na minha opinião são as mais importantes, porém outros projetos deveriam estar cobertos também.
+A parte de logs pode ser melhorada também, utilizar serilog ou uma abordagem melhor ainda, que seria implementar open telemetry e deixar a aplicação agnóstica com relação a Logs.
+Uma camada de cache, minha sugestão seria o Redis, para o controller de Relatório para otimizar o tempo de resposta, se necessário.
+O projeto esta containerizado e não é um sistema complexo por natureza, podemos utilizar o AWS ECS
+Como nuvem, minha sugestão é a AWS que contém todas as ferramentas necessárias para executar esse projeto de forma simples e segura.
