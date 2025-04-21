@@ -62,8 +62,10 @@ Minhas perguntas para o PO, seriam:
  4. Para o microsserviço de auditória, poderia-se criar uma api para recuperar os dados dessa auditoria. 
 
 ## Fase 3: Final
-Devido ao feriado de pascoa não consegui realizar testes unitários em todos os projetos e isso é algo que melhoraria com certeza numa próxima fase do projeto. Os testes foram desenvolvidos na cama de Domain e Application, que na minha opinião são as mais importantes, porém outros projetos deveriam estar cobertos também.
-A parte de logs pode ser melhorada também, utilizar serilog ou uma abordagem melhor ainda, que seria implementar open telemetry e deixar a aplicação agnóstica com relação a Logs.
-Uma camada de cache, minha sugestão seria o Redis, para o controller de Relatório para otimizar o tempo de resposta, se necessário.
-O projeto esta containerizado e não é um sistema complexo por natureza, podemos utilizar o AWS ECS
-Como nuvem, minha sugestão é a AWS que contém todas as ferramentas necessárias para executar esse projeto de forma simples e segura.
+
+ - Não consegui realizar testes unitários em todos os projetos e isso é algo que melhoraria com certeza numa próxima fase do projeto. Os testes foram desenvolvidos na cama de Domain e Application, que na minha opinião são as mais importantes, porém outros projetos deveriam estar cobertos também.
+- Teste de integrações trazem uma riqueza maior para o projeto também e certamente é algo que na "vida real" seria feito.
+- A parte de logs pode ser melhorada também, utilizar serilog ou uma abordagem melhor ainda, que seria implementar open telemetry e deixar a aplicação agnóstica com relação a Logs.
+- Uma camada de cache, minha sugestão seria o Redis, para o controller de Relatório para otimizar o tempo de resposta, se necessário.
+- O projeto esta containerizado e não é um sistema complexo por natureza, podemos utilizar o AWS ECS
+- Como nuvem, minha sugestão é a AWS que contém todas as ferramentas necessárias para executar esse projeto de forma simples e segura.
