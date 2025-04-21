@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+
+  eclipseworks_webapi:
+    container_name: eclipseworks_webapi
+    image: ${DOCKER_REGISTRY-}eclipseworkswebapi
+    build:
+      context: .
+      dockerfile: EclipseWorks.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__PostgreSql=User ID=postgres;Password=ABC123teste;Host=eclipseworks_database;Port=5432;Database=EclipseWorks;Connection Lifetime=0;
+      - ConnectionStrings__RabbitMq=eclipseworks_rabbitmq
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    networks:
+      - app-network      
+    depends_on:
+      - "eclipseworks_database"
+      - "eclipseworks_rabbitmq"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+  eclipseworks_audit:
+    container_name: eclipseworks_audit
+    image: ${DOCKER_REGISTRY-}eclipseworksaudit
+    build:
+      context: .
+      dockerfile: EclipseWorks.Audit/Dockerfile
+    environment:
+      - ConnectionStrings__PostgreSql=User ID=postgres;Password=ABC123teste;Host=eclipseworks_database;Port=5432;Database=EclipseWorks-Audit;Connection Lifetime=0;
+      - ConnectionStrings__RabbitMq=eclipseworks_rabbitmq
+    networks:
+      - app-network      
+    depends_on:
+      - "eclipseworks_database"
+      - "eclipseworks_rabbitmq"     
+      
+  eclipseworks_database:
+    container_name: eclipseworks_database
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ABC123teste
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data      
+    networks:
+      - app-network      
+    restart: unless-stopped
+
+  eclipseworks_rabbitmq:
+    container_name: eclipseworks_rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"    
+    networks:
+      - app-network  
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq      
+
+networks:
+  app-network:
+    driver: bridge
+    
+volumes:
+    postgres_data:
+    rabbitmq_data:    
