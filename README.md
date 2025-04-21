@@ -63,7 +63,7 @@ Minhas perguntas para o PO, seriam:
 
 ## Fase 3: Final
 
- - Não consegui realizar testes unitários em todos os projetos e isso é algo que melhoraria com certeza numa próxima fase do projeto. Os testes foram desenvolvidos na cama de Domain e Application, que na minha opinião são as mais importantes, porém outros projetos deveriam estar cobertos também.
+ - Não consegui realizar testes unitários em todos os projetos e isso é algo que melhoraria com certeza numa próxima fase do projeto. Os testes foram desenvolvidos na cama de Domain e Application, que na minha opinião são as mais importantes, porém outros projetos deveriam estar cobertos também, porém, com testes de integração - pois todas as classes possuem implementações que dependem de infraestrutura.
 - Teste de integrações trazem uma riqueza maior para o projeto também e certamente é algo que na "vida real" seria feito.
 - A parte de logs pode ser melhorada também, utilizar serilog ou uma abordagem melhor ainda, que seria implementar open telemetry e deixar a aplicação agnóstica com relação a Logs.
 - Uma camada de cache, minha sugestão seria o Redis, para o controller de Relatório para otimizar o tempo de resposta, se necessário.
